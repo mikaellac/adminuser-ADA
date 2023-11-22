@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" (click)="home()" >Home</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn()">
+        <a class="nav-link" (click)="listProducts()" >Listar Produtos</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn() && loggedUser()?.role==='admin'">
+        <a class="nav-link" (click)="addProducts()" >Adicionar Produtos</a>
+      </li>
+      <li class="nav-item" *ngIf="!isLoggedIn()">
+        <button class="nav-link btn btn-primary" (click)="login()" >Login</button>
+      </li>
+
+    </ul>
+    <div *ngIf="isLoggedIn()">
+      <span class="text-white" > Signed in as {{ loggedUser()?.name }} </span>
+      <button class="btn btn-primary" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
